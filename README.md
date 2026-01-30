@@ -95,7 +95,21 @@ Map<String, Integer> enchants = api.getEnchantments(itemStack);
 ### Configuration
 
 #### `registerItemToCategory`
-Registers a specific item ID to a category (e.g., "MELEE_WEAPON"). This is useful for defining which items can accept certain enchantments.
+Registers a specific item ID to a category (e.g., "MELEE_WEAPON"). Can be used to register modded Items to certain enchantments. Available Categories are: 
+- MELEE_WEAPON
+- RANGED_WEAPON
+- TOOL
+- PICKAXE
+- SHOVEL
+- AXE
+- SHIELD
+- BOOTS
+- HELMET
+- ARMOR
+- STAFF
+- STAFF_MANA
+- STAFF_ESSENCE
+
 
 ```java
 /**
