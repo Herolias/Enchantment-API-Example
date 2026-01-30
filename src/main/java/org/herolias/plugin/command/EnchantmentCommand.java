@@ -31,10 +31,8 @@ public class EnchantmentCommand extends CommandBase {
         }
 
         Player player = (Player) ctx.sender();
-        // Parse arguments manually from the input string
         String input = ctx.getInputString();
         String[] parts = input.trim().split("\\s+");
-        // parts[0] is the command itself, so args start at index 1
         String[] args = parts.length > 1 ? Arrays.copyOfRange(parts, 1, parts.length) : new String[0];
 
         if (args.length < 1) {
@@ -146,21 +144,10 @@ public class EnchantmentCommand extends CommandBase {
     }
 
     private void updateHeldItem(Inventory inventory, ItemStack newItem) {
-        // Determine whether the held item is in the hotbar or tools
-        // Based on Inventory.getItemInHand implementation:
-        // return this._usingToolsItem ? this.getActiveToolItem() : this.getActiveHotbarItem();
-        
-        // We can't access _usingToolsItem easily (it's private/not exposed clearly via getter in decompiled snippet?)
-        // Actually, getItemInHand logic depends on _usingToolsItem.
-        // However, we can check which slot is active.
-        
-        // Let's try to update the hotbar slot first.
+     
         int activeHotbarSlot = inventory.getActiveHotbarSlot();
         if (activeHotbarSlot != -1) {
              ItemContainer hotbar = inventory.getHotbar();
-             // Check if the hotbar item is indeed the one we modified (or at least valid)
-             // We'll just set it. If the player was using a tool, this might be incorrect, 
-             // but usually commands are run from the chat which might not be "using a tool" state.
              hotbar.setItemStackForSlot((short)activeHotbarSlot, newItem);
         }
     }
