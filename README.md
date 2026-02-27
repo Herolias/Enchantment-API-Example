@@ -1,6 +1,7 @@
 # Simple Enchantments API
 
-This project serves as an example implementation and documentation for the **Simple Enchantments API** — a public API that allows addon mods to interact with the enchantment system of the `SimpleEnchantments` mod for Hytale.
+This project serves as an example implementation and documentation for the **Simple Enchantments API** — a public API that allows mods to interact with the enchantment system of the `SimpleEnchantments` mod for Hytale as well as create their own enchantments and scrolls.
+Most of this API is added in the `SimpleEnchantments` mod version 0.9.0, so you cannot publish enchantment addons before this version is officially released.
 
 ---
 
@@ -95,7 +96,7 @@ protected void setup() {
 
 | | Enchantment Add-on | Standalone Mod |
 |---|---|---|
-| **Purpose** | Adds new enchantments to SE | Independent mod with optional SE support |
+| **Purpose** | Only adds new enchantments to SE | Independent mod with optional enchantment features |
 | **Works without SE?** | ❌ No | ✅ Yes |
 | **`build.gradle`** | `compileOnly` | `compileOnly` |
 | **`manifest.json`** | `"Dependencies"` | `"OptionalDependencies"` |
