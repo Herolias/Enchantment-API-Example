@@ -1,17 +1,17 @@
 {
-    "Group": "Example",
+    "Group": "org.herolias",
     "Name": "EnchantmentAPIexample",
     "Version": "0.0.2",
     "Description": "Example usage of the Simple Enchantments API",
     "Authors": [
         {
-            "Name": "It's you!"
+            "Name": "MineAndCraft"
         }
     ],
     "Website": "example.org",
-    "ServerVersion": "*",
+    "ServerVersion": "2026.02.19-1a311a592",
     "Dependencies": {
-        
+        "org.herolias:SimpleEnchantments": "0.9.0"
     },
     "OptionalDependencies": {
         
