@@ -115,10 +115,12 @@ To access the API, retrieve the singleton instance from the provider inside your
 import org.herolias.plugin.api.EnchantmentApi;
 import org.herolias.plugin.api.EnchantmentApiProvider;
 
-EnchantmentApi api = EnchantmentApiProvider.get();
-if (api == null) {
-    // Simple Enchantments is not loaded — handle gracefully
-    return;
+protected void setup() {
+    EnchantmentApi api = EnchantmentApiProvider.get(); //guard if optional dependency
+    if (api == null) {
+        // Simple Enchantments is not loaded — handle gracefully
+        return;
+    }
 }
 ```
 
