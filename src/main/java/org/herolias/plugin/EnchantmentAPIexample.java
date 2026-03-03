@@ -34,16 +34,21 @@ public class EnchantmentAPIexample extends JavaPlugin {
             api.registerCraftingCategory("Enchanting_Shovel", "Shovel", "Icons/CraftingCategories/ShovelTab.png");
             LOGGER.atInfo().log("Registered crafting category: Enchanting_Shovel");
 
+            // ─── Register new HOES category with registerCategoryByItems ───
+            ItemCategory hoesCategory = api.registerCategoryByItems("HOES", "Tool_Hoe_Crude", "Tool_Hoe_Iron", "Tool_Hoe_Copper", "Tool_Hoe_Thorium");
+            LOGGER.atInfo().log("Registered custom item category: HOES");
+
             // ─── Register the Gold Digger enchantment ───
             EnchantmentType goldDigger = api.registerEnchantment("example:gold_digger", "Gold Digger")
                 .description("Chance to find gold ore when digging dirt")
                 .maxLevel(3)
                 .multiplierPerLevel(0.10)
                 .bonusDescription("Mined dirt has a {amount}% chance to drop gold ore instead")
-                .walkthrough("While digging dirt blocks with a shovel, there is a chance "
+                .modDisplayName("Enchantment API Example")
+                .walkthrough("While digging dirt blocks with a shovel or hoe, there is a chance "
                     + "the block will drop gold ore instead of dirt. Each level increases "
                     + "the chance by {amount}%.")
-                .appliesTo(ItemCategory.SHOVEL)
+                .appliesTo(ItemCategory.SHOVEL, hoesCategory)
                 .craftingCategory("Enchanting_Shovel")
                 .scroll(1)
                     .quality("Uncommon")

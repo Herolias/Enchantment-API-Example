@@ -296,6 +296,71 @@ api.registerItemToCategory("Ingredient_Stick", "MELEE_WEAPON");
 
 ---
 
+#### `registerCategoryByFamily`
+
+Registers a custom item category based on an item family. Returns the registered `ItemCategory`, which can be used to specify which items an enchantment applies to.
+
+```java
+@Nonnull
+ItemCategory registerCategoryByFamily(@Nonnull String categoryId, @Nonnull String family)
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `categoryId` | `String` | Unique ID for the new or existing category (e.g. `"MY_MOD_WEAPON"`) |
+| `family` | `String` | The item tag family (e.g. `"katana"`) |
+
+**Returns:** The registered `ItemCategory`.
+
+```java
+ItemCategory myCategory = api.registerCategoryByFamily("MY_MOD_WEAPON", "katana");
+```
+
+---
+
+#### `registerCategoryByItems`
+
+Registers a custom item category and explicitly assigns an array of item IDs to it. Returns the registered `ItemCategory`, which can be used to specify which items an enchantment applies to.
+
+```java
+@Nonnull
+ItemCategory registerCategoryByItems(@Nonnull String categoryId, @Nonnull String... itemIds)
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `categoryId` | `String` | Unique ID for the new or existing category (e.g. `"MY_MOD_TOOLS"`) |
+| `itemIds` | `String...` | The item IDs to associate with this category |
+
+**Returns:** The registered `ItemCategory`.
+
+```java
+ItemCategory magicWands = api.registerCategoryByItems("MAGIC_WANDS", "Wand_Fire", "Wand_Ice");
+```
+
+---
+
+#### `getCategory`
+
+Retrieves a registered item category by its ID.
+
+```java
+@Nullable
+ItemCategory getCategory(@Nonnull String categoryId)
+```
+
+| Parameter | Type | Description |
+|---|---|---|
+| `categoryId` | `String` | The category ID |
+
+**Returns:** The `ItemCategory`, or `null` if not found.
+
+```java
+ItemCategory melee = api.getCategory("MELEE_WEAPON");
+```
+
+---
+
 #### `registerEnchantment`
 
 Starts building a new addon enchantment. Returns an `EnchantmentBuilder` for fluent configuration.
@@ -319,6 +384,7 @@ EnchantmentType lightning = api.registerEnchantment("my_mod:lightning", "Lightni
     .description("Chance to strike enemies with lightning")
     .maxLevel(3)
     .multiplierPerLevel(0.15)
+    .modDisplayName("My Awesome Mod")
     .appliesTo(ItemCategory.MELEE_WEAPON)
     .build();
 ```
@@ -562,6 +628,20 @@ Sets the bonus description template shown in tooltips and the walkthrough. Use `
 
 ---
 
+#### `modDisplayName(String modName)`
+
+Sets the display name of the mod that owns this enchantment. This name is shown in the scroll description and the walkthrough page. If not set, it falls back to the mod ID (the namespace part of the enchantment ID).
+
+| Parameter | Type | Default |
+|---|---|---|
+| `modName` | `String` | Falls back to namespace of ID |
+
+```java
+.modDisplayName("My Awesome Mod")
+```
+
+---
+
 #### `walkthrough(String text)`
 
 Sets custom walkthrough text for the `/enchanting` page. Use `{amount}` as a placeholder. If not set, defaults to the bonus description template.
@@ -753,6 +833,22 @@ Overrides the scroll texture for this level.
 
 ```java
 .texture("Items/MyScroll.png")
+```
+
+---
+
+#### `iconProperties(float scale, float translationX, float translationY, float rotationX, float rotationY, float rotationZ)`
+
+Overrides the scroll icon rendering properties (size, offset, and 3D rotation) in the UI and ground drops.
+
+| Parameter | Type | Default |
+|---|---|---|
+| `scale` | `float` | `0.84f` |
+| `translationX`, `translationY`| `float` | `5f`, `15f` |
+| `rotationX`, `rotationY`, `rotationZ` | `float` | `90f`, `45f`, `0f` |
+
+```java
+.iconProperties(0.9f, 6f, 16f, 90f, 45f, 0f)
 ```
 
 ---
