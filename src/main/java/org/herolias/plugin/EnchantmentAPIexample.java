@@ -42,7 +42,7 @@ public class EnchantmentAPIexample extends JavaPlugin {
             EnchantmentType goldDigger = api.registerEnchantment("example:gold_digger", "Gold Digger")
                 .description("Chance to find gold ore when digging dirt")
                 .maxLevel(3)
-                .multiplierPerLevel(0.10)
+                .multiplierPerLevel(0.10, "Gold drop chance per level")
                 .bonusDescription("Mined dirt has a {amount}% chance to drop gold ore instead")
                 .modDisplayName("Enchantment API Example")
                 .walkthrough("While digging dirt blocks with a shovel or hoe, there is a chance "

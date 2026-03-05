@@ -559,15 +559,35 @@ Marks this enchantment as legendary — only one legendary enchantment can be on
 ---
 
 #### `multiplierPerLevel(double multiplier)`
+#### `multiplierPerLevel(double multiplier, String label)`
 
-Sets the effect multiplier per level. When greater than `0`, the enchantment gets a configurable multiplier slider in the config UI. When `0`, the enchantment is treated as binary (on/off).
+Sets the primary effect multiplier per level. When greater than `0`, the enchantment gets a configurable multiplier slider in the config UI. When `0`, the enchantment is treated as binary (on/off).
+
+The second variation allows you to optionally set a custom label to display next to the slider in the config UI. If not set, it defaults to the translated name for your enchantment (or an empty string if missing).
 
 | Parameter | Type | Default |
 |---|---|---|
 | `multiplier` | `double` | `0.0` |
+| `label` | `String` | Falls back to namespace translation |
 
 ```java
-.multiplierPerLevel(0.10) // 10% per level
+.multiplierPerLevel(0.10, "Damage Per Level")
+```
+
+---
+
+#### `addMultiplier(String key, double defaultValue, String labelKey)`
+
+Adds a secondary configurable multiplier that will appear as an additional slider in the in-game configuration UI underneath the primary one. Useful for enchantments with multiple dynamic effects (e.g. chance + duration).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `key` | `String` | The unique suffix for this multiplier (e.g. `"duration"`). The final config key will be prefixed with your enchantment ID (e.g. `"my_mod:lightning:duration"`). |
+| `defaultValue` | `double` | The default value for the multiplier. |
+| `labelKey` | `String` | A translation key or raw text for the label displayed next to the slider in the UI. |
+
+```java
+.addMultiplier("duration", 5.0, "config.multiplier.lightning.duration")
 ```
 
 ---
